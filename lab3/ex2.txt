@@ -1,0 +1,34 @@
+Student(sid, name, program)
+        ---
+
+Instructor(iid, name, dpt, title)
+           ---
+
+Course(courseno, syllabus, title, credits)
+       --------
+
+
+
+Weak Entities
+
+Course_offerings(year, semester, courseno, time, secno, room)
+                 ------------------------
+
+
+
+Relationship
+
+requires(maincourse, prerequisite)
+         ------------------------
+	maincourse: FK(Course)
+	prerequisite: FK(Course)
+
+enrols(sid, year, semester, courseno, grade)
+       -----------------------------
+	sid: FK(Student)
+	year, semester, courseno: FK(Course_offerings)
+
+teaches(iid, year, semester, courseno)
+        -----------------------------
+	iid: FK(Instructor)
+	year, semester, courseno: FK(Course_offerings)

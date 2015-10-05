@@ -1,0 +1,67 @@
+Person(name, birthday, city, country)
+       ----
+
+Author(name)
+       ----
+	name: FK(Person)
+
+Actor(name)
+      ----
+	name: FK(Person)
+
+Director(name)
+         ----
+	name: FK(Person)
+
+Book(isbn, title, publisher, year)
+     ----
+
+Movie(title, year, rating, length, director)
+      -----------
+	name: FK(Director)
+	not null(name)
+
+Studio(company, country)
+       -------
+
+released(country, title, year, date)
+         --------------------
+	title, year: FK(Movie)
+
+
+
+Weak Entities
+
+Release(title, year, country, date)
+        --------------------
+	title, year,: FK(Movie)
+
+
+
+Relationships
+
+relative(name1, name2, relationship)
+         ------------
+	name1, name2: FK(Person)
+
+written_by(name, isbn)
+           ----------
+	name: FK(Author)
+	isbn: FK(Book)
+
+based_on(isbn, title, year)
+         -----------------
+	isbn: FK(Book)
+	title, year: FK(Movie)
+
+owns(name, company)
+     -------------
+	name: FK(Person)
+	company: FK(Studio)
+
+participate(name, title, year, role, company, salary)
+            -----------------
+	name: FK(Author)
+	title, year: FK(Movie)
+	company: FK(Studio)
+
