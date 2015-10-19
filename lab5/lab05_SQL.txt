@@ -1,0 +1,18 @@
+1. select count(distinct customer_name) from customer natural join borrower natural join loan natural join branch where customer.customer_city = branch.branch_city;
+
+2. select customer_name, avg(balance) from customer natural join depositor natural join account group by customer.customer_name;
+
+3. select customer_name, avg(balance) from customer natural join depositor natural join account natural join branch where branch.branch_city = 'Horseneck' group by customer.customer_name;
+
+4. select sum(account.balance) from branch natural join account where branch.branch_city = 'Horseneck';
+ para cada branch: select branch.branch_name, sum(account.balance) from branch natural join account where branch.branch_city = 'Horseneck' group by branch.branch_name;
+ 
+5. select branch.branch_city, sum(account.balance) from branch natural join account group by branch.branch_city;
+
+6. select branch_name from loan group by branch_name having count(branch_name) > 1 order by branch_name asc;
+
+7. select branch_name, sum(amount)  from loan group by branch_name having count(branch_name) > 1 order by branch_name asc;
+
+8. select branch.branch_name from branch left outer join account on branch.branch_name = account.branch_name where account_number is NULL;
+
+9. select distinct customer.customer_name from customer, depositor where customer.customer_name not in (select customer_name from depositor);
