@@ -2,7 +2,7 @@ delimiter $$
 
 CREATE TRIGGER overlapping_patient_time
 BEFORE INSERT
-   ON Connects FOR EACH ROW
+   ON Wears FOR EACH ROW
 
 BEGIN
 	if exists (select * from Wears
