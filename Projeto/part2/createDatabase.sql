@@ -1,3 +1,16 @@
+drop table if exists Connects;
+drop table if exists Setting;
+drop table if exists Wears;
+drop table if exists Setting;
+drop table if exists Reading;
+drop table if exists Period;
+drop table if exists Municipality;
+drop table if exists Actuator;
+drop table if exists Sensor;
+drop table if exists Device;
+drop table if exists PAN;
+drop table if exists Patient;
+
 create table Patient(
 	number		decimal(9,0),
 	name		varchar(255),
@@ -19,19 +32,19 @@ create table Device(
 );
 
 create table Sensor(
-	serialnum		varchar(30),
-	manufacturer	varchar(30),
+	snum			varchar(30),
+	manuf			varchar(30),
 	units			varchar(255),
-	primary key(serialnum, manufacturer),
-	foreign key(serialnum, manufacturer) references Device(serialnum, manufacturer)
+	primary key(snum, manuf),
+	foreign key(snum, manuf) references Device(serialnum, manufacturer)
 );
 
 create table Actuator(
-	serialnum		varchar(30),
-	manufacturer	varchar(30),
+	snum			varchar(30),
+	manuf			varchar(30),
 	units			varchar(255),
-	primary key(serialnum, manufacturer),
-	foreign key(serialnum, manufacturer) references Device(serialnum, manufacturer)
+	primary key(snum, manuf),
+	foreign key(snum, manuf) references Device(serialnum, manufacturer)
 );
 
 create table Municipality(
@@ -51,7 +64,7 @@ create table Reading(
 	datetime		datetime, 
 	value			decimal(5,1),
 	primary key(snum, manuf, datetime),
-	foreign key(snum, manuf) references Sensor(serialnum, manufacturer)
+	foreign key(snum, manuf) references Sensor(snum, manuf)
 );
 
 create table Setting ( 
@@ -60,7 +73,7 @@ create table Setting (
 	datetime		datetime,
 	value			decimal(5,1),
 	primary key(snum, manuf, datetime),
-	foreign key(snum, manuf) references Sensor(serialnum, manufacturer)
+	foreign key(snum, manuf) references Actuator(snum, manuf)
 );
 
 create table Wears(
