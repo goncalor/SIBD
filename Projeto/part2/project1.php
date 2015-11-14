@@ -3,37 +3,15 @@
 		<title>Submit Button</title>
 	</head>
 	<body>
-		<form method="post">
-<input type="submit" name="submit">
-</form>
 
 		<?php
 		$host = "sigma.tecnico.ulisboa.pt";
 		$user = "istXXXXX";
-		$pass = "XXXXX";
+		$pass = "XXXXXXX";
 		$dbhost = "db.ist.utl.pt";
-		$dbpass ="XXXXX";
+		$dbpass ="XXXXXX";
 		$dbname = "istXXXXX";
 		$dsn = "mysql:host=$dbhost;dbname=$dbname";
-		try{
-			$connection = new PDO($dsn, $user, $dbpass);
-		}
-		catch(PDOException $exception){
-			echo("<p>Error: ");
-			echo($exception->getMessage());
-			echo("</p>");
-			exit();
-			
-		}$test = 'Ana';
-		$sql = "call display_devices($test)";
-				$result = $connection->query($sql);
-				foreach($result as $row){
-				echo("<tr>");
-				for($j = 0; $j < count($row); $j++){
-					echo("<td>{$row[$j]}</td>");
-				}
-				echo("</tr>\n");
-			}
 		?>
 		<form method="post" action="http://web.ist.utl.pt/ist176971/project1.php">
 			<p>Enter the patient's name:</p>
@@ -51,13 +29,23 @@
 			</tr>
 			<?php
 			if(isset($_POST['submit'])) {
+				try{
+					$connection = new PDO($dsn, $user, $dbpass);
+				}
+				catch(PDOException $exception){
+					echo("<p>Error: ");
+					echo($exception->getMessage());
+					echo("</p>");
+					exit();
+				}
 				$name = $_POST['name'];
-				$sql = "call display_all_readings($name)";
+				$sql = "call display_all_readings('$name');";
 				$result = $connection->query($sql);
+				$connection = null;
 
 				foreach($result as $row){
 					echo("\n<tr>");
-					for($j = 0; $j < count($row); $j++){
+					for($j = 0; $j < 5; $j++){
 						echo("<td>{$row[$j]}</td>");
 					}
 					echo("</tr>");
@@ -77,18 +65,27 @@
 			</tr>
 			<?php
 				if(isset($_POST['submit'])) {
-				$sql = "call display_all_settings($name)";
-				$result = $connection->query($sql);
-
-				foreach($result as $row){
-				echo("<tr>");
-				for($j = 0; $j < count($row); $j++){
-					echo("<td>{$row[$j]}</td>");
+					try{
+						$connection = new PDO($dsn, $user, $dbpass);
+					}
+				catch(PDOException $exception){
+					echo("<p>Error: ");
+					echo($exception->getMessage());
+					echo("</p>");
+					exit();
 				}
-				echo("</tr>\n");
+				$sql = "call display_all_settings('$name');";
+				$result = $connection->query($sql);
+				foreach($result as $row){
+					echo("<tr>");
+						for($j = 0; $j < 5; $j++){
+							echo("<td>{$row[$j]}</td>");
+						}
+					echo("</tr>\n");
+				}
+			$connection = null;
 			}
-		}
-		?>
+			?>
 		</table>		
 	</body>
 </html>
