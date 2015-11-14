@@ -3,13 +3,17 @@
 		<title>Submit Button</title>
 	</head>
 	<body>
+		<form method="post">
+<input type="submit" name="submit">
+</form>
+
 		<?php
 		$host = "sigma.tecnico.ulisboa.pt";
-		$user = "ist176971";
-		$pass = "Napolas1";
+		$user = "istXXXXX";
+		$pass = "XXXXX";
 		$dbhost = "db.ist.utl.pt";
-		$dbpass ="ytdy6643";
-		$dbname = "ist176971";
+		$dbpass ="XXXXX";
+		$dbname = "istXXXXX";
 		$dsn = "mysql:host=$dbhost;dbname=$dbname";
 		try{
 			$connection = new PDO($dsn, $user, $dbpass);
@@ -19,13 +23,24 @@
 			echo($exception->getMessage());
 			echo("</p>");
 			exit();
-		}
+			
+		}$test = 'Ana';
+		$sql = "call display_devices($test)";
+				$result = $connection->query($sql);
+				foreach($result as $row){
+				echo("<tr>");
+				for($j = 0; $j < count($row); $j++){
+					echo("<td>{$row[$j]}</td>");
+				}
+				echo("</tr>\n");
+			}
 		?>
-		<form action="http://web.ist.utl.pt/ist176971/project1.php">
+		<form method="post" action="http://web.ist.utl.pt/ist176971/project1.php">
 			<p>Enter the patient's name:</p>
 			<input type="text" name="name" />
 			<input type="submit" name="submit" value="submit" />
-			<table border="1">
+		</form>
+		<table border="1">
 			<caption>Readings</caption>
  			<tr>
  				<td><em>Read Date</em></td>
@@ -36,8 +51,7 @@
 			</tr>
 			<?php
 			if(isset($_POST['submit'])) {
-				echo "WORKED!!";
-				$name = $_POST["name"];
+				$name = $_POST['name'];
 				$sql = "call display_all_readings($name)";
 				$result = $connection->query($sql);
 
@@ -75,10 +89,7 @@
 			}
 		}
 		?>
-		</table>
-		</form>
-
-		
+		</table>		
 	</body>
 </html>
 	
