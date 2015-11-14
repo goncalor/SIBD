@@ -2,9 +2,9 @@ drop procedure if exists display_devices;
 
 delimiter $$
 
-create procedure display_devices(in p_name varchar(255));
+create procedure display_devices(in p_name varchar(255))
 begin
-select snum, manuf into serialnum_out, manufacturer_out
+select snum, manuf
 from Patient, Wears, Connects
 where Patient.name = p_name
 and Patient.number = Wears.patient
