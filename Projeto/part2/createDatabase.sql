@@ -1,5 +1,5 @@
 drop table if exists Connects;
-drop table if exists Setting;
+drop table if exists Lives;
 drop table if exists Wears;
 drop table if exists Setting;
 drop table if exists Reading;

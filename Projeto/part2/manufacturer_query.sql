@@ -2,9 +2,9 @@ drop procedure if exists manufacturer_query;
 
 delimiter $$
 
-create procedure manufacturer_query(out manuf_out varchar(255))
+create procedure manufacturer_query()
 begin
-select manufacturer into manuf_out
+select manufacturer as 'Manufacturer'
 from Device, Lives, Connects, Wears
 where description like 'scale'
 and Device.serialnum = Connects.snum

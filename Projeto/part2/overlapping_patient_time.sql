@@ -1,3 +1,5 @@
+
+drop trigger if exists overlapping_patient_time;
 delimiter $$
 
 CREATE TRIGGER overlapping_patient_time
@@ -6,9 +8,11 @@ BEFORE INSERT
 
 BEGIN
 	if exists (select * from Wears
-             where start <= new.end
+             where new.pan = Wears.pan
+             and new.patient = Wears.patient
+             and start <= new.end
              and end >= new.start) then
-    signal sqlstate '45000' SET MESSAGE_TEXT = 'Overlaps with existing data';
+    call overlapping_data();
   end if;
 
 END$$

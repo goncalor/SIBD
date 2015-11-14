@@ -1,3 +1,5 @@
+drop trigger if exists overlapping_device_time;
+
 delimiter $$
 
 CREATE TRIGGER overlapping_device_time
@@ -6,9 +8,12 @@ BEFORE INSERT
 
 BEGIN
 	if exists (select * from Connects
-             where start <= new.end
+             where new.pan = Connects.pan
+             and new.snum = Connects.snum
+             and new.manuf = Connects.manuf
+             and start <= new.end
              and end >= new.start) then
-    signal sqlstate '45000' SET MESSAGE_TEXT = 'Overlaps with existing data';
+    call overlapping_data();
   end if;
 
 END$$
