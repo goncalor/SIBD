@@ -1,18 +1,23 @@
-drop table if exists Connects;
-drop table if exists Lives;
-drop table if exists Wears;
-drop table if exists Setting;
-drop table if exists Reading;
-drop table if exists Period;
-drop table if exists Municipality;
+-- Disable foreign key checking while dropping the tables. Otherwise
+-- tables must be dropped in a specific order such that foreign
+-- keys' constraints are not infringed.
+set foreign_key_checks=0;
 drop table if exists Actuator;
-drop table if exists Sensor;
+drop table if exists Connects;
 drop table if exists Device;
+drop table if exists Lives;
+drop table if exists Municipality;
 drop table if exists PAN;
 drop table if exists Patient;
+drop table if exists Period;
+drop table if exists Reading;
+drop table if exists Sensor;
+drop table if exists Setting;
+drop table if exists Wears;
+set foreign_key_checks=1;
 
 create table Patient(
-	number		decimal(9,0),
+	number		integer(9) unsigned,
 	name		varchar(255),
 	address		varchar(255),
 	primary key(number)
@@ -20,7 +25,7 @@ create table Patient(
 
 create table PAN(
 	domain			varchar(255),
-	phone			decimal(9,0),
+	phone			integer(9) unsigned,
 	primary key(domain)
 );
 
@@ -34,7 +39,7 @@ create table Device(
 create table Sensor(
 	snum			varchar(30),
 	manuf			varchar(30),
-	units			varchar(255),
+	units			varchar(50),
 	primary key(snum, manuf),
 	foreign key(snum, manuf) references Device(serialnum, manufacturer)
 );
@@ -42,16 +47,17 @@ create table Sensor(
 create table Actuator(
 	snum			varchar(30),
 	manuf			varchar(30),
-	units			varchar(255),
+	units			varchar(50),
 	primary key(snum, manuf),
 	foreign key(snum, manuf) references Device(serialnum, manufacturer)
 );
 
 create table Municipality(
-	nut4code		decimal(5,0),
+	nut4code		integer(5) unsigned,
 	name			varchar(255),
 	primary key(nut4code)
 );
+
 create table Period(
 	start			datetime,
 	end				datetime,
@@ -79,7 +85,7 @@ create table Setting (
 create table Wears(
 	start			datetime,
 	end				datetime,
-	patient			decimal(9,0),
+	patient			integer(9) unsigned,
 	pan				varchar(255),
 	primary key(start, end, patient),
 	foreign key(start, end) references Period(start, end),
@@ -90,8 +96,8 @@ create table Wears(
 create table Lives(
 	start			datetime,
 	end				datetime,
-	patient			decimal(9,0),
-	muni			decimal(5,0),
+	patient			integer(9) unsigned,
+	muni			integer(5) unsigned,
 	primary key(start, end, patient),
 	foreign key(start, end) references Period(start, end),
 	foreign key(patient) references Patient(number),
