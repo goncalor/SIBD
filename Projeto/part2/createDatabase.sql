@@ -115,3 +115,18 @@ create table Connects(
 	foreign key(snum, manuf) references Device(serialnum, manufacturer),
 	foreign key(pan) references PAN(domain)
 );
+
+
+-- Set up triggers
+-- Trigger creation will raise warnings since we previously dropped the
+--   tables the triggers were associated with. Dropping the tables also drops
+--   the triggers.
+
+source overlapping_device_time.sql;
+source overlapping_patient_time.sql;
+
+-- Set up procedures
+
+source display_all_readings.sql;
+source display_all_settings.sql;
+source display_devices.sql;

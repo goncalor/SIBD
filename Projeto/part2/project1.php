@@ -13,7 +13,7 @@
 		$dbname = "istXXXXX";
 		$dsn = "mysql:host=$dbhost;dbname=$dbname";
 		?>
-		<form method="post" action="http://web.ist.utl.pt/ist176971/project1.php">
+		<form method="post" action="project1.php">
 			<p>Enter the patient's name:</p>
 			<input type="text" name="name" />
 			<input type="submit" name="submit" value="submit" />
