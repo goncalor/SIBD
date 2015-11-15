@@ -1,3 +1,7 @@
+-- What are all the readings of a patient (identified by his/her number)
+-- in the last 6 months from devices with the words "blood pressure"
+-- in the description field? 
+
 drop procedure if exists readings_query;
 
 delimiter $$

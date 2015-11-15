@@ -1,3 +1,6 @@
+-- Which municipality has currently (now) the highest number of
+-- installed devices from manufacturer "Philips?"
+
 drop procedure if exists municipality_query;
 
 delimiter $$

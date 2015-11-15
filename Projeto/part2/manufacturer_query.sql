@@ -1,3 +1,6 @@
+-- Which manufacturers had devices described as "scale" being worn
+-- last year in all municipalities covered by the medical centre?
+
 drop procedure if exists manufacturer_query;
 
 delimiter $$
