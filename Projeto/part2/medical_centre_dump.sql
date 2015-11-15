@@ -14,13 +14,16 @@
 -- Dumping data for table `Actuator`
 --
 
+INSERT INTO `Actuator` VALUES ('1','General Electric Co.','beats/min.');
 
 --
 -- Dumping data for table `Connects`
 --
 
-INSERT INTO `Connects` VALUES ('2015-08-15 03:00:16','2015-11-15 03:00:16','1','Philips','000001.hsm.pt');
-INSERT INTO `Connects` VALUES ('2015-08-15 03:00:16','2015-11-15 03:00:16','2','Philips','000001.hsm.pt');
+INSERT INTO `Connects` VALUES ('2015-08-15 03:00:16','2015-11-15 03:00:16','0','Philips','000000.hsm.pt');
+INSERT INTO `Connects` VALUES ('2015-08-15 03:00:16','2015-11-15 03:00:16','1','Philips','000000.hsm.pt');
+INSERT INTO `Connects` VALUES ('2015-08-15 03:00:16','2015-11-15 03:00:16','1','General Electric Co.','000000.hsm.pt');
+
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -62,6 +65,7 @@ INSERT INTO `Device` VALUES ('0','Johnson & Johnson','Blood Pressure');
 INSERT INTO `Device` VALUES ('0','Philips','Scale');
 INSERT INTO `Device` VALUES ('1','Philips','Blood Pressure');
 INSERT INTO `Device` VALUES ('0','General Electric Co.','Scale');
+INSERT INTO `Device` VALUES ('1','General Electric Co.','Pacemaker');
 INSERT INTO `Device` VALUES ('0','Medtronic Inc.','Oxygen');
 INSERT INTO `Device` VALUES ('1','Medtronic Inc.','Scale');
 INSERT INTO `Device` VALUES ('2','Medtronic Inc.','Lipids');
@@ -184,6 +188,7 @@ INSERT INTO `Sensor` VALUES ('2','Medtronic Inc.','g/l');
 -- Dumping data for table `Setting`
 --
 
+INSERT INTO `Setting` VALUES ('1','General Electric Co.','2015-10-7 00:00:00', 70);
 
 --
 -- Dumping data for table `Wears`

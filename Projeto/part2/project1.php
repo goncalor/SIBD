@@ -5,12 +5,12 @@
 	<body>
 
 		<?php
-			$host = "sigma.tecnico.ulisboa.pt";
-			$user = "istXXXXX";
-			$pass = "XXXXXXX";
-			$dbhost = "db.ist.utl.pt";
-			$dbpass ="XXXXXX";
-			$dbname = "istXXXXX";
+			include_once("credentials.php");
+			// what the file should include:
+			// $user = "istXXXXX";
+			// $dbhost = "db.ist.utl.pt";
+			// $dbpass ="XXXXXX";
+			// $dbname = "istXXXXX";
 			$dsn = "mysql:host=$dbhost;dbname=$dbname";
 		?>
 
@@ -31,6 +31,7 @@
 			</tr>
 
 			<?php
+				// display readings for this patient
 				if(isset($_POST['submit'])) {
 					try{
 						$connection = new PDO($dsn, $user, $dbpass);
@@ -69,6 +70,7 @@
 			</tr>
 
 			<?php
+				// display settings for this patient
 				if(isset($_POST['submit'])) {
 					try{
 						$connection = new PDO($dsn, $user, $dbpass);
@@ -95,6 +97,4 @@
 		</table>		
 	</body>
 </html>
-	
-		
-		
+
