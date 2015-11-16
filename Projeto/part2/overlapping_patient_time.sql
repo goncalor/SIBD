@@ -12,8 +12,8 @@ begin
 	if exists (select * from Wears
 		where new.pan = Wears.pan
 		and new.patient = Wears.patient
-		and start <= new.end    -- trying to insert before a perior that exists
-		and end >= new.start) then    -- trying to insert after a perior that exists
+		and new.start <= end    -- trying to insert after a perior that exists
+		and new.end >= start) then    -- trying to insert before a perior that exists
 
 		-- call a non-existing method to raise an error
 		-- TODO: solve this in a safer way

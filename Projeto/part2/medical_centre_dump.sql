@@ -20,9 +20,10 @@ INSERT INTO `Actuator` VALUES ('1','General Electric Co.','beats/min.');
 -- Dumping data for table `Connects`
 --
 
-INSERT INTO `Connects` VALUES ('2015-08-15 03:00:16','2015-11-15 03:00:16','0','Philips','000000.hsm.pt');
-INSERT INTO `Connects` VALUES ('2015-08-15 03:00:16','2015-11-15 03:00:16','1','Philips','000000.hsm.pt');
-INSERT INTO `Connects` VALUES ('2015-08-15 03:00:16','2015-11-15 03:00:16','1','General Electric Co.','000000.hsm.pt');
+INSERT INTO `Connects` VALUES ('2015-08-15 00:00:00','2015-11-15 00:00:00','0','Philips','000000.hsm.pt');
+INSERT INTO `Connects` VALUES ('2015-08-15 00:00:00','2015-11-15 00:00:00','1','Philips','000000.hsm.pt');
+INSERT INTO `Connects` VALUES ('2015-08-15 00:00:00','2016-11-15 00:00:00','1','Philips','000000.hsm.pt');
+INSERT INTO `Connects` VALUES ('2015-08-15 00:00:00','2015-11-15 00:00:00','1','General Electric Co.','000000.hsm.pt');
 
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;

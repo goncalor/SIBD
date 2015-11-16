@@ -126,7 +126,10 @@ source overlapping_device_time.sql;
 source overlapping_patient_time.sql;
 
 -- Set up procedures
-
 source display_all_readings.sql;
 source display_all_settings.sql;
 source display_devices.sql;
+
+source manufacturer_query.sql;
+source municipality_query.sql;
+source readings_query.sql;
