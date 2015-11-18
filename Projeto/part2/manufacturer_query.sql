@@ -20,7 +20,7 @@ begin
 	and Wears.start <= Lives.end -- we also have to guarantee that the wear and live dates overlap
 	and Wears.end >= Lives.end
 	group by manufacturer -- check if each manufacturer was present in all muni's
-	having count(Lives.muni) = @munis;
+	having count(distinct Lives.muni) = @munis;
 end$$
 
 delimiter ;
