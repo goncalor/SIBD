@@ -7,16 +7,20 @@ delimiter $$
 
 create procedure manufacturer_query()
 begin
-	select manufacturer as 'Manufacturer', muni
-	from Device, Lives, Connects, Wears, Municipality
-	where lower(description) like 'scale'
-	and Device.serialnum = Connects.snum
+	select count(distinct nut4code) into @munis from Municipality;
+
+	select manufacturer as 'Manufacturer' -- the manufacturer was in all muni's, don't display muni?
+	from Device, Lives, Connects, Wears
+	where lower(description) like 'scale' 
+	and Device.serialnum = Connects.snum 
 	and Connects.pan = Wears.pan
 	and Wears.patient = Lives.patient
-	and Wears.end > DATE_SUB(NOW(), INTERVAL 1 YEAR)
+	and Wears.end > DATE_SUB(NOW(), INTERVAL 1 YEAR) 
 	and Lives.end > DATE_SUB(NOW(), INTERVAL 1 YEAR)
-	group by muni;
-	-- having count(Manufacturer) = count(nut4code);
+	and Wears.start <= Lives.end -- we also have to guarantee that the wear and live dates overlap
+	and Wears.end >= Lives.end
+	group by manufacturer -- check if each manufacturer was present in all muni's
+	having count(Lives.muni) = @munis;
 end$$
 
 delimiter ;
