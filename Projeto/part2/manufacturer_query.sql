@@ -7,8 +7,6 @@ delimiter $$
 
 create procedure manufacturer_query()
 begin
-	select count(distinct nut4code) into @munis from Municipality;
-
 	select manufacturer as 'Manufacturer' -- the manufacturer was in all muni's, don't display muni?
 	from Device, Lives, Connects, Wears
 	where lower(description) like 'scale' 
@@ -20,7 +18,7 @@ begin
 	and Wears.start <= Lives.end -- we also have to guarantee that the wear and live dates overlap
 	and Wears.end >= Lives.end
 	group by manufacturer -- check if each manufacturer was present in all muni's
-	having count(distinct Lives.muni) = @munis;
+	having count(distinct Lives.muni) = (select count(nut4code) from Municipality);
 end$$
 
 delimiter ;
