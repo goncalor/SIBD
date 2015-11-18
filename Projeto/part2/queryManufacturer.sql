@@ -1,11 +1,11 @@
 -- Which manufacturers had devices described as "scale" being worn
 -- last year in all municipalities covered by the medical centre?
 
-drop procedure if exists manufacturer_query;
+drop procedure if exists manufacturer;
 
 delimiter $$
 
-create procedure manufacturer_query()
+create procedure manufacturer()
 begin
 	select manufacturer as 'Manufacturer' -- the manufacturer was in all muni's, don't display muni?
 	from Device, Lives, Connects, Wears

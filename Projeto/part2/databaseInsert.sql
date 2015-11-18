@@ -1,9 +1,6 @@
 	insert into Patient values (111111111, 'Ana', 'Porto');
 	insert into Patient values (222222222,'Beatriz','Lisboa');
 	insert into Patient values (333333333, 'Xavier', 'Faro');
-	insert into Patient values (444444444, 'Xavier', 'Porto');
-	insert into Patient values (555555555, 'Xavier', 'Lisboa');
-	insert into Patient values (666666666, 'Xavier', 'Faro');
 
 	insert into PAN values ('www.ist1111.com',911111111);
 	insert into PAN values ('www.ist2222.com',922222222);
@@ -11,9 +8,6 @@
 	insert into PAN values ('www.ist4444.com',944444444);
 	insert into PAN values ('www.ist5555.com',955555555);
 	insert into PAN values ('www.ist6666.com',966666666);
-	insert into PAN values ('www.porto1.com',966666666);
-	insert into PAN values ('www.lisboa1.com',966666666);
-	insert into PAN values ('www.faro1.com',966666666);
 
 	insert into Device values ('A1111', 'Ola','blood pressure');
 	insert into Device values ('B1111', 'Aki','scale');
@@ -24,9 +18,6 @@
 	insert into Device values ('A3333', 'Ola','blood pressure');
 	insert into Device values ('B3333', 'Aki','scale');
 	insert into Device values ('C3333', 'Philips','blood pressure');
-	insert into Device values ('P1P', 'Philips','scale');
-	insert into Device values ('L1P', 'Philips','scale');
-	insert into Device values ('F1P', 'Philips','scale');
 
 	insert into Sensor values ('A1111', 'Ola','Pa');
 	insert into Sensor values ('B1111', 'Aki','gram');
@@ -103,16 +94,10 @@
 	insert into Wears values ('2015-10-30 00:00:00'	,'2099-01-01 00:00:00'	,222222222	,'www.ist5555.com');
 	insert into Wears values ('2014-01-01 00:00:00'	,'2014-03-02 00:00:00'	,333333333	,'www.ist3333.com');
 	insert into Wears values ('2014-12-30 00:00:00'	,'2099-01-01 00:00:00'	,333333333	,'www.ist6666.com');
-	insert into Wears values ('2014-12-30 00:00:00'	,'2099-01-01 00:00:00'	,444444444	,'www.porto1.com');
-	insert into Wears values ('2014-12-30 00:00:00'	,'2099-01-01 00:00:00'	,555555555	,'www.lisboa1.com');
-	insert into Wears values ('2014-12-30 00:00:00'	,'2099-01-01 00:00:00'	,666666666	,'www.faro1.com');
 
 	insert into Lives values ('2014-06-20 00:00:00'	,'2099-01-01 00:00:00'	,111111111	,11111);
 	insert into Lives values ('2014-12-30 00:00:00'	,'2099-01-01 00:00:00'	,222222222	,22222);
 	insert into Lives values ('2015-10-30 00:00:00'	,'2099-01-01 00:00:00'	,333333333	,33333);
-	insert into Lives values ('2015-10-30 00:00:00'	,'2099-01-01 00:00:00'	,444444444	,11111);
-	insert into Lives values ('2015-10-30 00:00:00'	,'2099-01-01 00:00:00'	,555555555	,22222);
-	insert into Lives values ('2015-10-30 00:00:00'	,'2099-01-01 00:00:00'	,666666666	,33333);
 
 	insert into Connects values('2014-01-20 00:00:00'	,'2014-06-10 00:00:00'	,'C1111'	,'Philips'	,'www.ist1111.com');
 	insert into Connects values('2014-02-20 00:00:00'	,'2014-06-10 00:00:00'	,'A3333'	,'Ola'		,'www.ist1111.com');
@@ -123,6 +108,3 @@
 	insert into Connects values('2015-10-30 00:00:00'	,'2099-01-01 00:00:00'	,'A1111'	,'Ola'		,'www.ist5555.com');
 	insert into Connects values('2014-01-01 00:00:00'	,'2014-03-02 00:00:00'	,'B1111'	,'Aki'		,'www.ist3333.com');
 	insert into Connects values('2014-12-30 00:00:00'	,'2099-01-01 00:00:00'	,'A2222'	,'Ola'		,'www.ist6666.com');
-	insert into Connects values('2015-10-30 00:00:00'	,'2099-01-01 00:00:00'	,'P1P'	,'Philips'		,'www.porto1.com');
-	insert into Connects values('2015-10-30 00:00:00'	,'2099-01-01 00:00:00'	,'L1P'	,'Philips'		,'www.lisboa1.com');
-	insert into Connects values('2015-10-30 00:00:00'	,'2099-01-01 00:00:00'	,'F1P'	,'Philips'		,'www.faro1.com');

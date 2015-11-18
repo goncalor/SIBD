@@ -1,11 +1,11 @@
 -- Which municipality has currently (now) the highest number of
 -- installed devices from manufacturer "Philips?"
 
-drop procedure if exists municipality_query;
+drop procedure if exists municipality;
 
 delimiter $$
 
-create procedure municipality_query()
+create procedure municipality()
 begin
 	select name as 'Municipality', muni as 'Code', count(manuf) as 'Installed Devices'
 	from Lives, Connects, Wears, Municipality
