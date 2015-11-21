@@ -5,7 +5,7 @@ drop trigger if exists update_overlapping_patient_time;
 delimiter $$
 
 create trigger update_overlapping_patient_time
-after update
+before update
 on Wears for each row
 
 begin

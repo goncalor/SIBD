@@ -6,7 +6,7 @@ drop trigger if exists update_overlapping_device_time;
 delimiter $$
 
 create trigger update_overlapping_device_time
-after update
+before update
 on Connects for each row
 
 begin
