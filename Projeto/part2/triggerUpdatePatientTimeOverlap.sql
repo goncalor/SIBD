@@ -1,10 +1,10 @@
 -- This trigger throws an error when inserting (PAN, patient) pair
 -- whose time period overlaps an already existing record.
 
-drop trigger if exists insert_overlapping_patient_time;
+drop trigger if exists update_overlapping_patient_time;
 delimiter $$
 
-create trigger insert_overlapping_patient_time
+create trigger update_overlapping_patient_time
 after update
 on Wears for each row
 
