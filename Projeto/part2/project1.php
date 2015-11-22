@@ -43,7 +43,7 @@
 						echo("</p>");
 						exit();
 					}
-					$name = $_POST['name'];
+					$name = '%'.$_POST['name'].'%';
 					$sql = "call display_all_readings('$name');";
 					$result = $connection->query($sql);
 					if ($result == FALSE){
