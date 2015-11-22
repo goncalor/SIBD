@@ -4,7 +4,7 @@ delimiter $$
 
 create procedure display_all_readings(in p_name varchar(255))
 begin
-	select Reading.datetime, Reading.snum, Reading.manuf, Sensor.units, Reading.value
+	select Patient.number, Reading.datetime, Reading.snum, Reading.manuf, Sensor.units, Reading.value
 	from Patient, Wears, Connects, Reading, Sensor
 	where Patient.name = p_name
 	and Patient.number = Wears.patient
@@ -12,7 +12,8 @@ begin
 	and Connects.snum = Reading.snum
 	and Connects.manuf = Reading.manuf
 	and Reading.snum = Sensor.snum
-	and Reading.manuf = Sensor.manuf;
+	and Reading.manuf = Sensor.manuf
+	order by Patient.number;
 end$$
 
 delimiter ;
