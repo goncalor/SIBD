@@ -38,9 +38,15 @@
 
 				$result = $connection->query($get_pans);
 			
+
 				$current_pan = $result->fetch()['pan'];
-				$previous_pan = $result->fetch()['pan'];
 				
+				$previous_pan = $result->fetch();
+				
+				$previous_start = $previous_pan['start'];
+				$previous_end = $previous_pan['end'];
+				$previous_pan = $previous_pan['pan'];
+
 				//echo("\n<tr><td>$previous_pan</td></tr>");
 				//echo("\n<tr><td>$current_pan</td></tr>");
 			
@@ -48,11 +54,17 @@
 							from Connects, Device 
 							where snum = serialnum
 							and manuf = manufacturer
-							and pan = '$previous_pan'";
+							and pan = '$previous_pan'
+							and start <= '$previous_end'
+							and end >= '$previous_start'";
 
 				
 									
 				$result = $connection->query($get_devices);
+				if($result == False){
+					echo("<p>Error: {$connection->errorInfo()[2]}/<p>");
+				}
+
 			}
 			
 		?>
