@@ -20,11 +20,7 @@
 			<input type="submit" name="submit" value="submit" />
 		</form>
 
-		<table border="1">
-			<caption>Devices from the previews PAN</caption>
- 			<tr>
-				<td><em>PAN</em></td>
-			</tr>
+			<p>Devices from the previous PAN. Select the ones you want to transfer:</p>			
 
 			<?php
 				// find the patients 2 most recent PAN's
@@ -60,20 +56,13 @@
 
 					$result = $connection->query($get_devices);
 
-					echo("<input type='checkbox' name='branch_name' value='Brighton'/>test</br>");
 					foreach($result as $row){
-						echo("\n<tr>");
-						for($j=0; $j < $result->columnCount(); $j++){
-							echo("<td>{$row[$j]}</td>");
-						}
-						echo("</tr>");
-						echo("<input type='checkbox' name='device' value='$row[manuf],$row[snum]'/>$row[manuf],$row[snum]</br>");
+						echo("<input type='checkbox' name='device' value='$row[manuf],$row[snum]'/>$row[description] : $row[manuf] - $row[snum]</br>");
 					}	
 
 					$connection = null;
 				}
 			?>
-		</table>
 	</body>
 </html>
 
