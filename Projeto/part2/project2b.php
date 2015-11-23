@@ -80,16 +80,23 @@
 			if(isset($_POST['submit'])){
 			    $selected_devices = $_REQUEST['device'];
 					
-			    print_r($selected_devices);
-			    
-			    foreach($selected_devices as $device){
-				
-			    
-			    
-			    }			
+				$now = date('Y-m-d H:i:s');
+				$connection->query("insert into Period values ('$now', '2099-01-01 00:00:00')");
+					
+				foreach($selected_devices as $index){
+					
+					$manuf=$devices[$index]['manufacturer'];
+					$sernum=$devices[$index]['serialnum'];
+					
+					$update = "update Connects set start='$now', end='2099-01-01 00:00:00', pan='$current_pan' where manuf='$manuf' and snum='$sernum'";
+					$result = $connection->query($update);
+					if($result == False){
+						echo("<p>Error: {$connection->errorInfo()[2]}/<p>");
+					}
+				}			
 			}		
-		?>			
-			
+		?>					
+				
 		<?php $connection = null; ?>
 	</body>
 </html>
