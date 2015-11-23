@@ -35,31 +35,76 @@
 						exit();
 					}
 					$name = $_POST['name'];
-					$get_pans = "select end, pan from Wears, Patient 
-										where Patient.number = Wears.patient 
-										and name = '$name' 
-										order by end asc";
-
-					$result = $connection->query($get_pans);
-
-					$previous_pan = $result->fetch()['pan'];
-					$current_pan = $result->fetch()['pan'];
 					
-					//echo("\n<tr><td>$previous_pan</td></tr>");
-					//echo("\n<tr><td>$current_pan</td></tr>");
+					$get_patients = "select number from Patient where name = '$name'";
 					
-					$get_devices = "select start, end, snum, manuf, description 
-										from Connects, Device 
-										where snum = serialnum
-										and manuf = manufacturer
-										and pan = '$previous_pan'";
+					$result = $connection->query($get_patients);
+					
+					
 
-					$result = $connection->query($get_devices);
-
+					
+					
+					
+					
+					
+					//create a form
+					echo '<form action="project2.php" method="post">';
+					// create dropdown; onchange will send the form when selected index changes...
+					echo("<select id='patient_id' name='patient_id'>");
+					echo("<option value='0'>--Select ID--</option>");
+					
 					foreach($result as $row){
-						echo("<input type='checkbox' name='device' value='$row[manuf],$row[snum]'/>$row[description] : $row[manuf] - $row[snum]</br>");
-					}	
+					  echo("<option value='$row[0]'>$row[0]</option>");			
+					}
+					
+					echo'</select>
+					<input type="submit" name="submit_patient" value="submit" />
+					</form>';
+					
+					
+					if(isset($_POST['submit_patient'])) {
+					  echo("TUJBHBUI");
+					  echo($_REQUEST['patient_id']);
+					}
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					print_r($_REQUEST);
+					
+					if($_REQUEST->patient_id != null){ 
+					  $get_pans = "select end, pan from Wears, Patient 
+										  where Patient.number = Wears.patient 
+										  and number = $_REQUEST->patient_id
+										  order by end desc limit 2";
 
+					  $result = $connection->query($get_pans);
+
+					  $current_pan = $result->fetch()['pan'];
+					  $previous_pan = $result->fetch()['pan'];
+					  
+					  
+					  //echo("\n<tr><td>$previous_pan</td></tr>");
+					  //echo("\n<tr><td>$current_pan</td></tr>");
+					  
+					  $get_devices = "select start, end, snum, manuf, description 
+										  from Connects, Device 
+										  where snum = serialnum
+										  and manuf = manufacturer
+										  and pan = '$previous_pan'";
+
+					  $result = $connection->query($get_devices);
+
+					  foreach($result as $row){
+						  echo("<input type='checkbox' name='device' value='$row[manuf],$row[snum]'/>$row[description] : $row[manuf] - $row[snum]</br>");
+					  }	
+					}
 					$connection = null;
 				}
 			?>
