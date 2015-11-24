@@ -6,18 +6,18 @@ drop procedure if exists queryReadings;
 
 delimiter $$
 
-create procedure queryReadings(in p_number varchar(255))
+create procedure queryReadings()
 begin
-	select datetime, value
+	select Wears.patient as 'Patient ID', Reading.snum, Reading.manuf, datetime, Reading.value, Device.description
 	from Reading, Wears, Connects, Device
-	where p_number = Wears.patient 
-	and Wears.pan = Connects.pan 
+	where Wears.pan = Connects.pan 
 	and Connects.snum = Reading.snum 
 	and Connects.manuf = Reading.manuf 
 	and Connects.snum = Device.serialnum 
 	and Connects.manuf = Device.manufacturer 
 	and Reading.datetime > DATE_SUB(NOW(), INTERVAL 6 MONTH)
-	and lower(Device.description) like 'blood pressure';
+	and lower(Device.description) like 'blood pressure'
+	order by Wears.patient;
 end$$
 
 delimiter ;
