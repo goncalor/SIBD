@@ -2,11 +2,11 @@
 -- in the last 6 months from devices with the words "blood pressure"
 -- in the description field? 
 
-drop procedure if exists readings;
+drop procedure if exists queryReadings;
 
 delimiter $$
 
-create procedure readings(in p_number varchar(255))
+create procedure queryReadings(in p_number varchar(255))
 begin
 	select datetime, value
 	from Reading, Wears, Connects, Device

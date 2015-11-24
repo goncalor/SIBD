@@ -1,8 +1,8 @@
-drop procedure if exists manufacturer_query;
+drop procedure if exists queryManufacturer;
 
 delimiter $$
 
-create procedure manufacturer_query()
+create procedure queryManufacturer()
 begin
 select distinct manufacturer
 from Device as d
