@@ -17,7 +17,6 @@ begin
 	and Wears.end >= NOW()
 	and Lives.end >= NOW()
 	group by muni
-	-- TODO: check what happens when two municipalities have the same count
 	having count(manuf) >= all(select count(manuf)
 		from Lives, Connects, Wears
 		where lower(Connects.manuf) = 'philips'
