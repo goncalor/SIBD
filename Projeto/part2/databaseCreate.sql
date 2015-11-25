@@ -116,7 +116,7 @@ create table Wears(
 	foreign key(pan) references PAN(domain)
 );
 
--- re-enable foreign key checking
+-- Re-enable foreign key checking
 set foreign_key_checks=1;
 
 -- Set up triggers

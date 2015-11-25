@@ -1,4 +1,4 @@
--- This trigger throws an error when inserting (PAN, patient) pair
+-- This trigger throws an error when updating (PAN, patient) pair
 -- whose time period overlaps an already existing record.
 
 drop trigger if exists update_overlapping_patient_time;

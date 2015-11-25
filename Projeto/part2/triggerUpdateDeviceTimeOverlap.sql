@@ -1,5 +1,5 @@
--- This trigger throws an error when inserting
--- (serial number, nanufacturer, PAN) tuple whose time period
+-- This trigger throws an error when updating
+-- (serial number, manufacturer, PAN) tuple whose time period
 -- overlaps an already existing record.
 
 drop trigger if exists update_overlapping_device_time;
