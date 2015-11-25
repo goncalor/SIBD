@@ -20,9 +20,11 @@
 			<input type="submit" name="submit" value="submit" />
 		</form>
 
+
 		<?php
 			// find the patients 2 most recent PAN's
 			if(isset($_POST['submit'])) {
+				echo "<p>Patients with the submited name:</p>";			
 				try{
 					$connection = new PDO($dsn, $user, $dbpass);
 				}
