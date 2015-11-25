@@ -68,7 +68,7 @@
 					and pan = '$previous_pan'
 					and '$previous_end' < '2099-01-01 00:00:00' 
 					and end = '2099-01-01 00:00:00'";
-					//pan não activa e device ainda ligado à pan
+					//pan nao activa e device ainda ligado a pan
 		
 							
 		$result = $connection->query($get_devices);
@@ -92,7 +92,7 @@
 						and manuf = manufacturer
 						and pan = '$current_pan'
 						and end = '2099-01-01 00:00:00'";
-						//pan não activa e device ainda ligado à pan
+						//pan nao activa e device ainda ligado a pan
 		
 							
 		$result = $connection->query($get_devices);
