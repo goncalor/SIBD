@@ -11,9 +11,9 @@ begin
 	and Wears.pan = Connects.pan
 	and Connects.snum = Reading.snum
 	and Reading.snum = Sensor.snum
-	and Reading.datetime BETWEEN Wears.start and Wears.end
-	and Reading.datetime BETWEEN Connects.start and Connects.end
-	order by Patient.number, Reading.datetime DESC;
+	and Reading.datetime between Wears.start and Wears.end
+	and Reading.datetime between Connects.start and Connects.end
+	order by Patient.number, Reading.datetime desc;
 end$$
 
 delimiter ;
