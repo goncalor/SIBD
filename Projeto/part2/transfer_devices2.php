@@ -85,6 +85,32 @@
 		
 		echo("<input type='submit' name='submit' value='submit' />");
 		echo("</form>");
+
+		$get_devices = "select start, end, snum, manuf, description 
+						from Connects, Device 
+						where snum = serialnum
+						and manuf = manufacturer
+						and pan = '$current_pan'
+						and end = '2099-01-01 00:00:00'";
+						//pan não activa e device ainda ligado à pan
+		
+							
+		$result = $connection->query($get_devices);
+		if($result == False){
+			echo("<p>Error: {$connection->errorInfo()[2]}/<p>");
+		}
+		echo "<table border='1'>
+				<caption>Devices on the new PAN</caption>
+				<tr>
+					<td>Manufacturer</td>
+					<td>Serial Number</td>
+					<td>Connected since</td>
+				</tr>";
+
+		foreach($result as $row){
+			echo("<tr><td> $row[manuf] </td><td> $row[snum] </td><td> $row[start] </td></tr>");
+		}
+		echo "</table>";
 	}
 	
 
