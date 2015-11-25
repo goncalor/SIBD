@@ -23,12 +23,12 @@
 		<table border="1">
 			<caption>Readings</caption>
  			<tr>
- 				<td><em>Patient Number</em></td>
- 				<td><em>Read Date</em></td>
-				<td><em>Serial Number</em></td>
-				<td><em>Manufacturer</em></td>
-				<td><em>Units</em></td>
-				<td><em>Value</em></td>
+ 				<td>Patient Number</td>
+ 				<td>Read Date</td>
+				<td>Serial Number</td>
+				<td>Manufacturer</td>
+				<td>Units</td>
+				<td>Value</td>
 			</tr>
 
 			<?php
