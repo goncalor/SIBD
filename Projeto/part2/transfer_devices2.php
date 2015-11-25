@@ -102,13 +102,14 @@
 		echo "<table border='1'>
 				<caption>Devices on the new PAN</caption>
 				<tr>
+					<td>Description</td>
 					<td>Manufacturer</td>
 					<td>Serial Number</td>
 					<td>Connected since</td>
 				</tr>";
 
 		foreach($result as $row){
-			echo("<tr><td> $row[manuf] </td><td> $row[snum] </td><td> $row[start] </td></tr>");
+			echo("<tr><td> $row[description] </td><td> $row[manuf] </td><td> $row[snum] </td><td> $row[start] </td></tr>");
 		}
 		echo "</table>";
 	}
