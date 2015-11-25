@@ -22,6 +22,8 @@
 		echo("</p>");
 		exit();
 	}
+
+
 	
 	if(isset($_REQUEST['ID'])){ 
 	
@@ -43,8 +45,21 @@
 		$previous_end = $previous_pan['end'];
 		$previous_pan = $previous_pan['pan'];
 
-		//echo("\n<tr><td>$previous_pan</td></tr>");
-		//echo("\n<tr><td>$current_pan</td></tr>");
+		if(isset($_POST['submit'])){
+			$selected_devices = $_POST['selected_devices'];
+			$now = date('Y-m-d H:i:s');
+			$connection->query("insert into Period values ('$now', '2099-01-01 00:00:00')");
+				
+			foreach($selected_devices as $device){	
+				list($manuf, $sernum) = explode('|', $device);
+
+				$update = "update Connects set start='$now', pan='$current_pan' where manuf='$manuf' and snum='$sernum' and end='2099-01-01 00:00:00'";
+				$result = $connection->query($update);
+				if($result == False){
+					echo("<p>Error: {$connection->errorInfo()[2]}/<p>");
+				}
+			}			
+		}		
 	
 		$get_devices = "select start, end, snum, manuf, description 
 					from Connects, Device 
@@ -61,40 +76,17 @@
 			echo("<p>Error: {$connection->errorInfo()[2]}/<p>");
 		}
 
-		echo("<form method='post' action=''>");
+		echo("<form method='post' action='project2b.php?ID=$ID'>");
 		echo("<p>Select devices to be transfered to the new PAN:</p>");		
 		
-		$i=0;
 		foreach($result as $row){
-			$devices[$i]['manufacturer'] = $row['manuf'];
-			$devices[$i]['serialnum'] = $row['snum'];
-			echo("<input type='checkbox' name='device[]' value='$i'/>$row[description] : $row[manuf] - $row[snum]</br>");
-			$i++;
+			echo("<input type='checkbox' name='selected_devices[]' value='$row[manuf]|$row[snum]' />$row[description] : $row[manuf] - $row[snum]</br>");
 		}
 		
 		echo("<input type='submit' name='submit' value='submit' />");
 		echo("</form>");
 	}
-
-	if(isset($_POST['submit'])){
-		$selected_devices = $_REQUEST['device'];
-			
-		$now = date('Y-m-d H:i:s');
-		$connection->query("insert into Period values ('$now', '2099-01-01 00:00:00')");
-			
-		foreach($selected_devices as $index){
-			
-			$manuf=$devices[$index]['manufacturer'];
-			$sernum=$devices[$index]['serialnum'];
-			
-			$update = "update Connects set start='$now', pan='$current_pan' where manuf='$manuf' and snum='$sernum' and end='2099-01-01 00:00:00'";
-			$result = $connection->query($update);
-			if($result == False){
-				echo("<p>Error: {$connection->errorInfo()[2]}/<p>");
-			}
-
-		}			
-	}		
+	
 
 	$connection = null;	
 ?>					
