@@ -20,8 +20,6 @@
 			<input type="submit" name="submit" value="submit" />
 		</form>
 
-		<p>Devices from the previous PAN. Select the ones you want to transfer:</p>			
-
 		<?php
 			// find the patients 2 most recent PAN's
 			if(isset($_POST['submit'])) {
