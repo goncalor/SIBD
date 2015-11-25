@@ -76,7 +76,7 @@
 			echo("<p>Error: {$connection->errorInfo()[2]}/<p>");
 		}
 
-		echo("<form method='post' action='project2b.php?ID=$ID'>");
+		echo("<form method='post' action='transfer_devices2.php?ID=$ID'>");
 		echo("<p>Select devices to be transfered to the new PAN:</p>");		
 		
 		foreach($result as $row){

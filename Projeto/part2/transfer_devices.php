@@ -14,7 +14,7 @@
 			$dsn = "mysql:host=$dbhost;dbname=$dbname";
 		?>
 
-		<form method="post" action="project2.php">
+		<form method="post" action="transfer_devices.php">
 			<p>Enter the patient's name:</p>
 			<input type="text" name="name" />
 			<input type="submit" name="submit" value="submit" />
@@ -40,7 +40,7 @@
 				
 				
 				foreach($result as $row){
-					  echo("<a href='project2b.php?ID=$row[0]'>$name : $row[0]</a></br>");
+					  echo("<a href='transfer_devices2.php?ID=$row[0]'>$name : $row[0]</a></br>");
 				}	
 				
 				$connection = null;

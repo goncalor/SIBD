@@ -14,7 +14,7 @@
 			$dsn = "mysql:host=$dbhost;dbname=$dbname";
 		?>
 
-		<form method="post" action="project1.php">
+		<form method="post" action="patient_records.php">
 			<p>Enter the patient's name:</p>
 			<input type="text" name="name" />
 			<input type="submit" name="submit" value="submit" />
