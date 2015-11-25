@@ -13,18 +13,18 @@ begin
 	and Connects.pan = Wears.pan
 	and Wears.patient = Lives.patient
 	and Municipality.nut4code = muni
-	and NOW() BETWEEN Connects.start AND Connects.end
-	and NOW() BETWEEN Wears.start AND Wears.end
-	and NOW() BETWEEN Lives.start AND Lives.end
+	and NOW() between Connects.start and Connects.end
+	and NOW() between Wears.start and Wears.end
+	and NOW() between Lives.start and Lives.end
 	group by muni
 	having count(manuf) >= all(select count(manuf)
 		from Lives, Connects, Wears
 		where lower(Connects.manuf) = 'philips'
 		and Connects.pan = Wears.pan
 		and Wears.patient = Lives.patient
-		and NOW() BETWEEN Connects.start AND Connects.end
-		and NOW() BETWEEN Wears.start AND Wears.end
-		and NOW() BETWEEN Lives.start AND Lives.end
+		and NOW() between Connects.start and Connects.end
+		and NOW() between Wears.start and Wears.end
+		and NOW() between Lives.start and Lives.end
 		group by muni);
 
 end$$

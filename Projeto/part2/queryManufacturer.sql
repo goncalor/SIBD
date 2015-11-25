@@ -21,9 +21,9 @@ where not exists(
 		and Connects.pan = Wears.pan
 		and Wears.patient = Lives.patient
 		and d2.manufacturer = d.manufacturer
-		and Wears.end > DATE_SUB(NOW(), INTERVAL 1 YEAR) 
-		and Lives.end > DATE_SUB(NOW(), INTERVAL 1 YEAR)
-		and Connects.end > DATE_SUB(NOW(), INTERVAL 1 YEAR)));
+		and Wears.end > DATE_SUB(NOW(), interval 1 year) 
+		and Lives.end > DATE_SUB(NOW(), interval 1 year)
+		and Connects.end > DATE_SUB(NOW(), interval 1 year)));
 
 end$$
 
