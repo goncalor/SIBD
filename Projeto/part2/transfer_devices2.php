@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <html>
 	<head>
 		<title>Transfer devices to the new PAN</title>
@@ -22,8 +23,6 @@
 		echo("</p>");
 		exit();
 	}
-
-
 	
 	if(isset($_REQUEST['ID'])){ 
 	
@@ -41,7 +40,6 @@
 		
 		$previous_pan = $result->fetch();
 		
-		$previous_start = $previous_pan['start'];
 		$previous_end = $previous_pan['end'];
 		$previous_pan = $previous_pan['pan'];
 
@@ -49,11 +47,12 @@
 			$selected_devices = $_POST['selected_devices'];
 			$now = date('Y-m-d H:i:s');
 			$connection->query("insert into Period values ('$now', '2099-01-01 00:00:00')");
-				
-			foreach($selected_devices as $device){	
-				list($manuf, $sernum) = explode('|', $device);
 
-				$update = "update Connects set start='$now', pan='$current_pan' where manuf='$manuf' and snum='$sernum' and end='2099-01-01 00:00:00'";
+			foreach($selected_devices as $i){	
+				$manuf = $_SESSION['devices'][$i]['manuf'];
+				$snum = $_SESSION['devices'][$i]['snum'];
+
+				$update = "update Connects set start='$now', pan='$current_pan' where manuf='$manuf' and snum='$snum' and end='2099-01-01 00:00:00'";
 				$result = $connection->query($update);
 				if($result == False){
 					echo("<p>Error: {$connection->errorInfo()[2]}/<p>");
@@ -76,12 +75,17 @@
 			echo("<p>Error: {$connection->errorInfo()[2]}/<p>");
 		}
 
-		echo("<form method='post' action='transfer_devices2.php?ID=$ID'>");
+		echo("<form method='post' action=''>");
 		echo("<p>Select devices to be transfered to the new PAN:</p>");		
-		
+
+		$i = 0;
 		foreach($result as $row){
-			echo("<input type='checkbox' name='selected_devices[]' value='$row[manuf]|$row[snum]' />$row[description] : $row[manuf] - $row[snum]</br>");
+			$devices[$i]['manuf'] = $row['manuf'];
+			$devices[$i]['snum'] = $row['snum'];
+			echo("<input type='checkbox' name='selected_devices[]' value=$i />$row[description] : $row[manuf] - $row[snum]</br>");
+			$i++;
 		}
+		$_SESSION['devices'] = $devices;
 		
 		echo("<input type='submit' name='submit' value='submit' />");
 		echo("</form>");
@@ -113,7 +117,6 @@
 		}
 		echo "</table>";
 	}
-	
 
 	$connection = null;	
 ?>					
