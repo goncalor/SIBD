@@ -1,11 +1,11 @@
 -- Which municipality has currently (now) the highest number of
 -- installed devices from manufacturer "Philips?"
 
-drop procedure if exists municipality;
+drop procedure if exists queryMunicipality;
 
 delimiter $$
 
-create procedure municipality()
+create procedure queryMunicipality()
 begin
 	select name as 'Municipality', muni as 'Code', count(manuf) as 'Installed Devices'
 	from Lives, Connects, Wears, Municipality
@@ -13,19 +13,18 @@ begin
 	and Connects.pan = Wears.pan
 	and Wears.patient = Lives.patient
 	and Municipality.nut4code = muni
-	and Connects.end >= NOW()
-	and Wears.end >= NOW()
-	and Lives.end >= NOW()
+	and NOW() BETWEEN Connects.start AND Connects.end
+	and NOW() BETWEEN Wears.start AND Wears.end
+	and NOW() BETWEEN Lives.start AND Lives.end
 	group by muni
-	-- TODO: check what happens when two municipalities have the same count
 	having count(manuf) >= all(select count(manuf)
 		from Lives, Connects, Wears
 		where lower(Connects.manuf) = 'philips'
 		and Connects.pan = Wears.pan
 		and Wears.patient = Lives.patient
-		and Connects.end >= NOW()
-		and Wears.end >= NOW()
-		and Lives.end >= NOW()
+		and NOW() BETWEEN Connects.start AND Connects.end
+		and NOW() BETWEEN Wears.start AND Wears.end
+		and NOW() BETWEEN Lives.start AND Lives.end
 		group by muni);
 
 end$$

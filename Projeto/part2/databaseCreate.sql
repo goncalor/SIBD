@@ -123,7 +123,9 @@ create table Connects(
 --   the triggers.
 
 source triggerDeviceTimeOverlap.sql;
+source triggerUpdateDeviceTimeOverlap.sql;
 source triggerPatientTimeOverlap.sql;
+source triggerUpdatePatientTimeOverlap.sql;
 
 -- Set up procedures
 source display_all_readings.sql;
