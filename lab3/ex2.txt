@@ -13,6 +13,7 @@ Weak Entities
 
 Course_offerings(year, semester, courseno, time, secno, room)
                  ------------------------
+    courseno: FK(Course)
 
 
 
